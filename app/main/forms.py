@@ -6,7 +6,7 @@ class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
     submit = SubmitField('Submit')
 
-class PitchForm(FlaskForm):
+class EventForm(FlaskForm):
 	title = StringField('Title', validators=[Required()])
 	description = TextAreaField("What would you like to pitch ?",validators=[Required()])
 	category = RadioField('Label', choices=[ ('intertainment','intertainment'), ('politics','politics'),('health','health'),('education','education')],validators=[Required()])
@@ -16,9 +16,7 @@ class CommentForm(FlaskForm):
 	description = TextAreaField('Add comment',validators=[Required()])
 	submit = SubmitField()
 
-class UpvoteForm(FlaskForm):
+class LikeForm(FlaskForm):
 	submit = SubmitField()
 
 
-class Downvote(FlaskForm):
-	submit = SubmitField()

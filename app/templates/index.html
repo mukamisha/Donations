@@ -20,32 +20,32 @@
       <div style="width:600px;height:100px;margin-left:400px">
       <ul class="nav justify-content-center" role="tablist">
         <li class="nav-item">
-          <a class="navbar-brand" data-toggle="tab" href="#intertainment" style="background-color:black">Intertainment</a>
-        </li>
-        <li class="nav-item">
-          <a class="navbar-brand" data-toggle="tab" href="#politics" style="background-color:black">Politics</a>
-        </li>
-        <li class="nav-item">
           <a class="navbar-brand" data-toggle="tab" href="#health" style="background-color:black">Health</a>
         </li>
         <li class="nav-item">
           <a class="navbar-brand" data-toggle="tab" href="#education" style="background-color:black">Education</a>
         </li>
+        <li class="nav-item">
+          <a class="navbar-brand" data-toggle="tab" href="#disasters" style="background-color:black">Disasters</a>
+        </li>
+        <li class="nav-item">
+          <a class="navbar-brand" data-toggle="tab" href="#justice" style="background-color:black">Justice</a>
+        </li>
       </ul>
       </div>
       <div class="tab-content">
-        <div id="intertainment" class="container tab-pane fade"><br>
-          {{ macro.display(intertainment) }}
-          
-        </div>
-        <div id="politics" class="container tab-pane fade"><br>
-          {{ macro.display(politics) }}
-        </div>
         <div id="health" class="container tab-pane fade"><br>
-          {{ macro.display(health)}}
+          {{ macro.display(health) }}
+          
         </div>
         <div id="education" class="container tab-pane fade"><br>
           {{ macro.display(education) }}
+        </div>
+        <div id="disasters" class="container tab-pane fade"><br>
+          {{ macro.display(disasters)}}
+        </div>
+        <div id="justice" class="container tab-pane fade"><br>
+          {{ macro.display(justice) }}
         </div>
         
       </div>
