@@ -15,7 +15,7 @@
 				<a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-info"> Add a comment</a>
 				<a href="{{url_for('main.upvote',pitch_id = category.id)}}" class= "btn btn-info"><i></i>Upvote <span>{{category.upvotes.count()}}</span></a>
 				<a href="{{url_for('main.downvote',pitch_id = category.id)}}" class= "btn btn-info"><i class="far fa-thumbs-up"></i>Downvote <span>{{category.downvotes.count()}}</span></a>
-				
+				<a href="{{url_for('main.new_donation',pitch_id = category.id)}}" class="btn btn-info"> Donate now</a>
 			</div>
 		</div>
 
@@ -26,8 +26,21 @@
 </div>
 {% endmacro %}
 
+{% macro displayDonation(donations) %}
+<ul>
 
+			{% if donations %}
+			{% for donation in donations %}
+				<div class="row text-center">
+						<p style="color: black">{{ donation.fullnames }}</p>
+						<p></p> posted by {{donation.email}}</p>
+				</div>
+			{% endfor %}
+			{%endif%}
 
+</ul>
+	
+{% endmacro %}
 {% macro displayComment(comments) %}
 <ul>
 

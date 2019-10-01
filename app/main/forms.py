@@ -12,13 +12,14 @@ class PitchForm(FlaskForm):
 	category = RadioField('Label', choices=[ ('intertainment','intertainment'), ('politics','politics'),('health','health'),('education','education')],validators=[Required()])
 	submit = SubmitField('Submit')
 
+class DonationForm(FlaskForm):
+    fullname = StringField('Fullnames', validators=[Required()])
+    email = StringField('Email',validators=[Required()])
+    Phonenumber = StringField('Phonenumber',validators=[Required()])
+    category = RadioField('Label', choices=[ ('intertainment','intertainment'), ('politics','politics'),('health','health'),('education','education')],validators=[Required()])
+    # category = RadioField('Label', choices=[ ('health','health'), ('education','education'),('disasters','disasters'),('justice','justice')],validators=[Required()])
+    submit = SubmitField('Submit')
+
 class CommentForm(FlaskForm):
 	description = TextAreaField('Add comment',validators=[Required()])
-	submit = SubmitField()
-
-class UpvoteForm(FlaskForm):
-	submit = SubmitField()
-
-
-class Downvote(FlaskForm):
 	submit = SubmitField()

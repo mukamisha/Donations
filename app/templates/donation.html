@@ -1,0 +1,28 @@
+{% include 'navbar.html'%}
+
+{% import 'bootstrap/wtf.html' as wtf %}
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+            <div  style="width:520px;height:300px">
+                    {{wtf.quick_form(form)}}
+            </div>
+    </div>
+</div>
+
+
+<div class="container">
+<div class="col-md-12">
+<!-- <h4 style="color: black; text-align: center;text-decoration:none">Comments for this posts are:</h4> -->
+{{ macro.displayDonation(donations) }}
+
+</div>
+
+</div>
+
+	
+{% endblock %}

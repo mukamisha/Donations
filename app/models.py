@@ -63,7 +63,19 @@ class Pitch(db.Model):
     def __repr__(self):
         return f'Pitch {self.description}'
 
+class Donation(db.Model):
+    __tablename__='donation'
 
+    id = db.Column(db.Integer,primary_key=True)
+    fullname = db.Column(db.String())
+    email = db.Column(db.String())
+    Phonenumber = db.Column(db.Integer())
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable= False)
+    pitch_id = db.Column(db.Integer, db.ForeignKey('pitches.id'), nullable=False)
+    category = db.Column(db.String(255), nullable=False)
+
+    def __repr__(self):
+        return f'Donation {self.fullname}'
 
 class Comment(db.Model):
     __tablename__='comments'

@@ -2,9 +2,9 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 # from ..request import get_movies,get_movie,search_movie
-from .forms import PitchForm,CommentForm,UpvoteForm,Downvote,UpdateProfile
+from .forms import PitchForm,CommentForm,UpdateProfile,DonationForm
 from .. import db,photos
-from ..models import User,Pitch,Comment,Upvote,Downvote
+from ..models import User,Pitch,Comment,Upvote,Downvote,Donation
 from flask_login import login_required,current_user
 import markdown2
  
@@ -63,6 +63,25 @@ def new_comment(pitch_id):
 
     all_comments = Comment.query.filter_by(pitch_id = pitch_id).all()
     return render_template('comment.html', form = form, comment = all_comments, pitch = pitch )
+
+@main.route('/donate/new/<int:pitch_id>', methods = ['GET','POST'])
+@login_required
+def new_donation(pitch_id):
+    form = DonationForm()
+    pitch=Pitch.query.get(pitch_id)
+    if form.validate_on_submit():
+        fullname = form.fullname.data
+        email = form.email.data
+        Phonenumber = form.Phonenumber.data
+        new_donation = Donation(fullname = fullname, email = email, Phonenumber = Phonenumber, user_id = current_user._get_current_object().id, pitch_id = pitch_id)
+        db.session.add(new_donation)
+        db.session.commit()
+
+
+        return redirect(url_for('.new_donation', pitch_id= pitch_id))
+
+    all_donations = Donation.query.filter_by(pitch_id = pitch_id).all()
+    return render_template('donation.html', form = form, donation = all_donations, pitch = pitch )
 
 @main.route('/pitch/upvote/<int:pitch_id>/upvote', methods = ['GET', 'POST'])
 @login_required
