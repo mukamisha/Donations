@@ -5,10 +5,9 @@ class Config:
     # simple mde  configurations
     SIMPLEMDE_JS_IIFE = True
     SIMPLEMDE_USE_CDN = True
-    # MOVIE_API_BASE_URL ='https://api.themoviedb.org/3/movie/{}?api_key={}'
-    # MOVIE_API_KEY = '2197098f34dd6b61e8919f32ae43e37d'
+    
     SECRET_KEY = 'jacky2'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mukamisha:mukamisha@97@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:nana@1@localhost/donations'
     UPLOADED_PHOTOS_DEST ='app/static/photos'
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
@@ -26,9 +25,9 @@ class ProdConfig(Config):
     SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mukamisha:mukamisha@97@localhost/pitch_test'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:nana@1@localhost/donations_test'
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mukamisha:mukamisha@97@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://wecode:nana@1@localhost/donations'
     DEBUG = True
 
 config_options = {
