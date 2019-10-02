@@ -1,6 +1,6 @@
 
-<div class="navbar navbar-inverse" role="navigation">
-  <div class="container-fluid">
+<!-- <div class="navbar navbar-inverse" role="navigation">
+  <div class="container">
       <div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -9,11 +9,11 @@
             <span class="icon-bar"></span>
           </button>
           <ul>
-          <a style="text-align: center; color: whitesmoke;" class="nav navbar-nav navbar-right" href="/pitches/new/"> Pitch here </a>
+          <a style="text-align: center; color: whitesmoke; text-align: center; font-family: 'Great Vibes',cursive; font-size:22px;" class="nav navbar-nav navbar-right" href="/donation/new/"> Donate here </a>
           </ul>
       </div>
       <div class="nav navbar-nav navbar-left">
-          <a style="margin-left:60px; color: whitesmoke;" class="nav navbar-nav navbar-left" href="/"> HomePage </a>
+          <a style="margin-left:60px; color: whitesmoke;font-size:22px;font-family: 'Great Vibes',cursive;" class="nav navbar-nav navbar-left" href="/"> HomePage </a>
 
       </div>
 
@@ -38,4 +38,55 @@
       </div>
     
 </div>
+</div> -->
+
+
+
+<div class="navbar navbar-inverse" role="navigation">
+  <div class="container">
+      <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+          </button>
+
+      </div>
+      <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li><a style="font-size:20px;color:rgb(255, 255, 255);font-family: 'Great Vibes', cursive;font-size:22px;" href="/">Home </a></li>
+          </ul>
+          <ul>
+              <a style="text-align: center; color:rgb(255, 255, 255);font-family: 'Great Vibes', cursive;font-size:22px;"
+                href="{{url_for('auth.subscription')}}"> Donate </a>
+          </ul>
+          <!-- <li><a href="{{url_for('main.new_event')}}">Event</a></li> -->
+          <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button"  href="{{url_for('main.new_event')}}" data-toggle="dropdown">Event
+                <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a href="#health">Health</a></li>
+                  <li><a href="#education">Education</a></li>
+                  <li><a href="#disasters">Disasters</a></li>
+                  <li><a href="#justice">Justice</a></li>
+                </ul>
+              </div>
+
+          <ul class="nav navbar-nav navbar-right">
+              {% if current_user.is_authenticated %}
+              <li><a style="color:rgb(255, 255, 255);" href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+              <li><a style="color:rgb(255, 255, 255);" href="{{url_for('auth.logout')}}">Sign out</a></li>
+              {% else %}
+              <li><a style="color:rgb(255, 255, 255);" href="{{url_for('auth.login')}}">Sign in</a></li>
+              {%endif%}
+          </ul>
+      </div>
+
+  </div>
+
 </div>
+<!-- <ul>
+  <h1 style="margin-top:50px; margin-bottom:50px;text-align:center; text-transform:capitalize;color:rgb(10, 10, 10);font-size:62px;font-family: 'Great Vibes', cursive; ">welcome
+      to my blog </h1>
+</ul> -->

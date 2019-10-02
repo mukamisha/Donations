@@ -11,13 +11,13 @@
 		<div>
 				{{wtf.quick_form(form)}}
 		<ul>
-				{% for pitch in pitches %}
+				{% for donation in donations %}
 					<div >
 						
 							<div >
-								<p>{{pitch.id}}</p>
+								<p>{{donation.id}}</p>
 							</div>
-							<h4>{{ pitch.description }}</h4>
+							<h4>{{ donation.description }}</h4>
 							<h6> Posted by {{user.username}}.</h6>
 						
 					</div>

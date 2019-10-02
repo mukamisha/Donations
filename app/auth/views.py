@@ -1,13 +1,12 @@
 # from flask import render_template
 from . import auth
 from flask import render_template,redirect,url_for
-from ..models import User
-# from .forms import RegistrationForm
+from ..models import User, Donation, Subscription
 from .. import db
 from flask import render_template,redirect,url_for, flash,request
 from flask_login import login_user
 from ..models import User
-from .forms import LoginForm,RegistrationForm
+from .forms import LoginForm,RegistrationForm,DonationForm
 from flask_login import login_user,logout_user,login_required
 from ..email import mail_message
 
@@ -43,3 +42,16 @@ def register():
         return redirect(url_for('auth.login'))
         title = "New Account"
     return render_template('auth/register.html',registration_form = form)
+
+@auth.route('/subscription', methods=["GET", "POST"])
+def subscription():
+   subform = DonationForm()
+   if subform.validate_on_submit():
+       subscribers = Subscription(name=subform.name.data, email=subform.email.data)
+       db.session.add(subscribers)
+       db.session.commit()
+       mail_message("Welcome to Donation...",
+                    "email/welcome_user", subscribers.email, subscribers=subscribers)
+       return redirect(url_for('main.index'))
+       title = "New Subscription"
+   return render_template('auth/subscribe.html', subscription_form=subform)

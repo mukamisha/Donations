@@ -1,0 +1,45 @@
+{% extends 'bootstrap/base.html' %}
+{% import 'macros.html' as macro %}
+{% block navbar %}
+{% include 'navbar.html'%}
+{% endblock %}
+ {% block content %}
+   <div class="container">
+       <div class="jumbotron" style="height:200px;width:1120px;font-family: 'Kaushan Script', cursive;font-size:5px">
+         <p>Posted Events</p>
+       </div>
+     </div>
+     <h3 style="color: black;text-align: center"> here are different event categories you may see</h3>
+     <br>
+     <div style="width:600px;height:100px;margin-left:400px">
+     <ul class="nav justify-content-center" role="tablist">
+       <li class="nav-item">
+         <a class="navbar-brand" data-toggle="tab" href="#health" style="background-color:black">Health</a>
+       </li>
+       <li class="nav-item">
+         <a class="navbar-brand" data-toggle="tab" href="#education" style="background-color:black">Education</a>
+       </li>
+       <li class="nav-item">
+         <a class="navbar-brand" data-toggle="tab" href="#disasters" style="background-color:black">Disasters</a>
+       </li>
+       <li class="nav-item">
+         <a class="navbar-brand" data-toggle="tab" href="#justice" style="background-color:black">Justice</a>
+       </li>
+     </ul>
+     </div>
+     <div class="tab-content">
+       <div id="health" class="container tab-pane fade"><br>
+         {{ macro.display(health) }}
+       </div>
+       <div id="education" class="container tab-pane fade"><br>
+         {{ macro.display(education) }}
+       </div>
+       <div id="disasters" class="container tab-pane fade"><br>
+         {{ macro.display(disasters)}}
+       </div>
+       <div id="justice" class="container tab-pane fade"><br>
+         {{ macro.display(justice) }}
+       </div>
+     </div>
+   </div>
+ {% endblock %}

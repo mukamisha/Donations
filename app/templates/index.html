@@ -3,51 +3,55 @@
 {% block navbar %}
 {% include 'navbar.html'%}
 {% endblock %}
+{% block styles%}
+{{ super() }}
 
-  
-  {% block content %}
 
-    <div class="container">
-     
-        <div class="jumbotron" style="height:200px;width:1120px;font-family: 'Kaushan Script', cursive;font-size:5px">
-          <p>In life, you only have 60 seconds to impress someone. 1 minute can make or break you.<br>
-          one minute can kill you or heal you. let's use our one minute to tell something to the world.<br>
-        Here we have a pitch app where you will be posting a pitch for only one minute.please post something constructive.</p>
-        </div>
-      </div>
-      <h3 style="color: black;text-align: center"> Here are Pitches Categories, you can choose one you might like!</h3>
-      <br>
-      <div style="width:600px;height:100px;margin-left:400px">
-      <ul class="nav justify-content-center" role="tablist">
-        <li class="nav-item">
-          <a class="navbar-brand" data-toggle="tab" href="#intertainment" style="background-color:black">Intertainment</a>
-        </li>
-        <li class="nav-item">
-          <a class="navbar-brand" data-toggle="tab" href="#politics" style="background-color:black">Politics</a>
-        </li>
-        <li class="nav-item">
-          <a class="navbar-brand" data-toggle="tab" href="#health" style="background-color:black">Health</a>
-        </li>
-        <li class="nav-item">
-          <a class="navbar-brand" data-toggle="tab" href="#education" style="background-color:black">Education</a>
-        </li>
-      </ul>
-      </div>
-      <div class="tab-content">
-        <div id="intertainment" class="container tab-pane fade"><br>
-          {{ macro.display(intertainment) }}
-          
-        </div>
-        <div id="politics" class="container tab-pane fade"><br>
-          {{ macro.display(politics) }}
-        </div>
-        <div id="health" class="container tab-pane fade"><br>
-          {{ macro.display(health)}}
-        </div>
-        <div id="education" class="container tab-pane fade"><br>
-          {{ macro.display(education) }}
-        </div>
-        
-      </div>
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+{% endblock %}
+{% block content %}
+
+<div  style="background-image: url(static/photos/pic.png);  background-repeat: no-repeat; background-size: cover; ">
+  <div style="text-align: center; font-family: 'Great Vibes', cursive; color: rgb(10, 10, 9); font-size: 22px;"> <br><br><br><br><br><br><br>
+    <h1>Charity</h1>
+    <p >donate</p>
+    <p >&</p>
+    <p >save a life</p>
+    <br><br><br><br><br><br>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5">
+      <h3 style="text-align:center;border-bottom:1px solid rgb(7, 7, 7);">Who we are!!</h3><br>
+      <p style="margin-left:10%;">With Alone, making a solid,
+        respectable online platform for your NGOs,
+        charity events, campaigns and projects is now easier than ever,
+        and customizing it to fit your branding needs or identity is an easy,
+        breezy matter which takes minutes at most and not a single line of coding.
+        Alone incorporates the world famous Visual Composer premium plugin for you to
+        craft your own layouts or modify the different templates included with Alone,
+        such as several different homepage styles and inner pages. It’s ready for WooCommerce,
+        and even includes a simplified AJAX popup for making donations not only feasible,
+        but accessible from day one. Use plugin Chariable with many extensions for you choose
+        more gateway payment (Paypal, Stripe, Authorize.Net, PayFast, PayUMoney and others).
+        Alone is ready to work right out of the box, and it just might be what you and your
+        project need. Try Alone now!
+      </p>
     </div>
-  {% endblock %}
+    <div class="col-md-1"></div>
+    <div class="col-md-5">
+      <br><br>
+      <img src="static/photos/hand.jpg" style="width:100%;" alt="img">
+    </div>
+
+  </div>
+</div>
+
+<div style="margin-top:100px; background-color:black;text-align:center;color:white;height:100px;font-size:18px;padding-top:40px;">
+  <p> &copy;2019 copyright | Donations |All Right Reserved </p>
+</div>
+{% endblock %}
