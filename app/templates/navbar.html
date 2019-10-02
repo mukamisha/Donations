@@ -9,7 +9,7 @@
             <span class="icon-bar"></span>
           </button>
           <ul>
-          <a style="text-align: center; color: whitesmoke;" class="nav navbar-nav navbar-right" href="/pitches/new/"> Pitch here </a>
+          
           </ul>
       </div>
       <div class="nav navbar-nav navbar-left">
@@ -20,7 +20,7 @@
       <div class="nav navbar-nav navbar-right">
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
-        <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+        <li><a href="{{url_for('main.new_event')}}">Event</a></li>
         <li><a style="color: whitesmoke;"  href="{{url_for('auth.logout')}}">Sign out</a></li>
         {% else %}
         <li><a style="color: whitesmoke;" href="{{url_for('auth.login')}}">Sign in</a></li>

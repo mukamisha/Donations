@@ -2,27 +2,24 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 # from ..request import get_movies,get_movie,search_movie
-from .forms import EventForm,CommentForm,LikeForm,UpdateProfile
+from .forms import EventForm,CommentForm,LikeForm
 from .. import db,photos
 from ..models import User,Event,Comment,Like
 from flask_login import login_required,current_user
 import markdown2
  
 
-
-
-
 # Views
 @main.route('/', methods = ['GET','POST'])
 def index():
 
-   
+
     event = Event.query.filter_by().first()
     title = 'EVENT'
-    health = Pitch.query.filter_by(category="health")
-    education = Pitch.query.filter_by(category = "education")
-    disasters = Pitch.query.filter_by(category = "disasters")
-    justice = Pitch.query.filter_by(category = "justice")
+    health = Event.query.filter_by(category="health")
+    education = Event.query.filter_by(category = "education")
+    disasters = Event.query.filter_by(category = "disasters")
+    justice = Event.query.filter_by(category = "justice")
 
     return render_template('index.html', title = title, event = event, health=health, education= education, disasters = disasters,justice = justice)
     
@@ -76,48 +73,10 @@ def like(event_id):
 
 
     new_like = Like(event_id=event_id, user = current_user)
-    new_like.save_events()
+    new_like.save_likes ()
     return redirect(url_for('main.index'))
 
 
 
-
-@main.route('/user/<uname>')
-@login_required
-def profile(uname):
- user = User.query.filter_by(username = uname).first()
- get_pitches = Pitch.query.filter_by(user_id = current_user.id).all()
- if user is None:
-     abort(404)
- return render_template("profile/profile.html", user = user, pitches_content = get_pitches)
-
-@main.route('/user/<uname>/update',methods = ['GET','POST'])
-@login_required
-def update_profile(uname):
-    user = User.query.filter_by(username = uname).first()
-    if user is None:
-        abort(404)
-
-    form = UpdateProfile()
-
-    if form.validate_on_submit():
-        user.bio = form.bio.data
-        db.session.add(user)
-        db.session.commit()
-
-        return redirect(url_for('.profile',uname=user.username))
-
-    return render_template('profile/update.html',form =form)
-
-@main.route('/user/<uname>/update/pic',methods= ['POST'])
-@login_required
-def update_pic(uname):
-    user = User.query.filter_by(username = uname).first()
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        user.profile_pic_path = path
-        db.session.commit()
-    return redirect(url_for('main.profile',uname=uname))
 
 

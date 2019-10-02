@@ -17,8 +17,7 @@ class User(UserMixin,db.Model):
     comment = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
     likes = db.relationship('Like', backref = 'user', lazy = 'dynamic')
     bio = db.Column(db.String(255))
-    profile_pic_path =  db.Column(db.String(255))
-    # password_secure =  db.Column(db.String(255))
+   
 
     @property
     def password(self):
@@ -48,13 +47,13 @@ class Event(db.Model):
     title = db.Column(db.String())
     category = db.Column(db.String(255), nullable=False)
     comments = db.relationship('Comment',backref='event',lazy='dynamic')
-    likes = db.relationship('Likes', backref = 'event', lazy = 'dynamic')
+    likes = db.relationship('Like', backref = 'event', lazy = 'dynamic')
    
 
     
     @classmethod
     def get_events(cls, id):
-        events = Event.query.order_by(pitch_id=id).desc().all()
+        events = Event.query.order_by(event_id=id).desc().all()
         return events
 
     def __repr__(self):
