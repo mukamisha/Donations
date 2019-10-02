@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField,PasswordField,SubmitField, BooleanField
+from wtforms import StringField,PasswordField,SubmitField, BooleanField, TextAreaField,RadioField
 from wtforms.validators import Required,Email,EqualTo
-from ..models import User
+from ..models import User,Subscription
 from wtforms import ValidationError
 
 
@@ -23,6 +23,23 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('That username is taken')
 
 
+class SubscriptionForm(FlaskForm):
+    name = StringField('names', validators=[Required()])
+    email = StringField('Email',validators=[Required()])
+    Phonenumber = StringField('Phonenumber',validators=[Required()])
+    donation = TextAreaField("What are you donating?",validators=[Required()])
+    category = RadioField('Label', choices=[ ('intertainment','intertainment'), ('politics','politics'),('health','health'),('education','education')],validators=[Required()])
+    submit = SubmitField('Submit')
+
+
+def validate_name(self, data_field):
+    if User.query.filter_by(username=data_field.data).first():
+        raise ValidationError('That username is taken')
+
+def validate_user_email(self, data_field):
+    if User.query.filter_by(email=data_field.data).first():
+        raise ValidationError('There is an account with that email')
+        
 class LoginForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()])
     password = PasswordField('Password',validators =[Required()])

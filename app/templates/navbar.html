@@ -16,10 +16,14 @@
           <a style="margin-left:60px; color: whitesmoke;" class="nav navbar-nav navbar-left" href="/"> HomePage </a>
 
       </div>
+      <li>
+        <a style="color: whitesmoke;" href="{{url_for('auth.subscription')}}">Donate Now</a>
+    </li>
 
       <div class="nav navbar-nav navbar-right">
       <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
+      
         <li><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
         <li><a style="color: whitesmoke;"  href="{{url_for('auth.logout')}}">Sign out</a></li>
         {% else %}

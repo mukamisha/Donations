@@ -4,7 +4,7 @@ from . import main
 # from ..request import get_movies,get_movie,search_movie
 from .forms import PitchForm,CommentForm,UpdateProfile,DonationForm
 from .. import db,photos
-from ..models import User,Pitch,Comment,Upvote,Downvote,Donation
+from ..models import User,Pitch,Comment,Upvote,Downvote,Donation,Subscription
 from flask_login import login_required,current_user
 import markdown2
  
@@ -31,7 +31,7 @@ def index():
 @login_required
 def new_pitch():
     form = PitchForm()
- 
+    subscribe = Subscription.query.all()
     if form.validate_on_submit():
         description = form.description.data
         title = form.title.data
@@ -41,6 +41,7 @@ def new_pitch():
         new_pitch = Pitch(user_id =current_user._get_current_object().id, title = title,description=description,category=category)
         db.session.add(new_pitch)
         db.session.commit()
+
         return redirect(url_for('main.index'))
     return render_template('pitch.html',form=form)
 
@@ -50,6 +51,7 @@ def new_pitch():
 @login_required
 def new_comment(pitch_id):
     form = CommentForm()
+    
     pitch=Pitch.query.get(pitch_id)
     if form.validate_on_submit():
         description = form.description.data
@@ -68,6 +70,7 @@ def new_comment(pitch_id):
 @login_required
 def new_donation(pitch_id):
     form = DonationForm()
+    subscribe = Subscription.query.all()
     pitch=Pitch.query.get(pitch_id)
     if form.validate_on_submit():
         fullname = form.fullname.data
@@ -77,6 +80,9 @@ def new_donation(pitch_id):
         db.session.add(new_donation)
         db.session.commit()
 
+        for email in subscribe:
+            mail_message("New Blog Alert!!!!",
+                         "email/blog_alert", email.email, subscribe=subscribe)
 
         return redirect(url_for('.new_donation', pitch_id= pitch_id))
 
