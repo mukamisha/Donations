@@ -60,38 +60,38 @@ def new_donation():
 
 
 
-@main.route('/comment/new/<int:donation_id>', methods = ['GET','POST'])
+@main.route('/comment/new/<int:event_id>', methods = ['GET','POST'])
 @login_required
-def new_comment(donation_id):
+def new_comment(event_id):
     form = CommentForm()
-    donation=Donation.query.get(donation_id)
+    event=Event.query.get(event_id)
     if form.validate_on_submit():
         description = form.description.data
 
-        new_comment = Comment(description = description, user_id = current_user._get_current_object().id, donation_id = donation_id)
+        new_comment = Comment(description = description, user_id = current_user._get_current_object().id, event_id = event_id)
         db.session.add(new_comment)
         db.session.commit()
 
 
-        return redirect(url_for('.new_comment', donation_id= donation_id))
+        return redirect(url_for('.home', event_id= event_id))
 
-    all_comments = Comment.query.filter_by(donation_id = donation_id).all()
-    return render_template('comment.html', form = form, comment = all_comments, donation = donation )
+    all_comments = Comment.query.filter_by(event_id = event_id).all()
+    return render_template('comment.html', form = form, comment = all_comments, event = event )
 
-@main.route('/donation/upvote/<int:donation_id>/upvote', methods = ['GET', 'POST'])
+@main.route('/event/upvote/<int:event_id>/upvote', methods = ['GET', 'POST'])
 @login_required
-def upvote(donation_id):
-    donation = Donation.query.get(donation_id)
+def upvote(event_id):
+    event = Event.query.get(event_id)
     user = current_user
-    donation_upvotes = Upvote.query.filter_by(donation_id= donation_id)
+    event_upvotes = Upvote.query.filter_by(event_id= event_id)
     
-    if Upvote.query.filter(Upvote.user_id==user.id,Upvote.donation_id==donation_id).first():
-        return  redirect(url_for('main.index'))
+    if Upvote.query.filter(Upvote.user_id==user.id,Upvote.event_id==event_id).first():
+        return  redirect(url_for('main.home'))
 
 
-    new_upvote = Upvote(donation_id=donation_id, user = current_user)
+    new_upvote = Upvote(event_id=event_id, user = current_user)
     new_upvote.save_upvotes()
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.home'))
 
 
 @main.route('/user/<uname>')
@@ -147,7 +147,7 @@ def new_event():
        new_event = Event(user_id =current_user._get_current_object().id, title = title,description=description,category=category)
        db.session.add(new_event)
        db.session.commit()
-       return redirect(url_for('main.index'))
+       return redirect(url_for('main.home'))
    return render_template('event.html',form=form)
 
 

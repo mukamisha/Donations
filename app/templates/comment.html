@@ -5,16 +5,22 @@
 {% extends 'bootstrap/base.html' %}
 {% import 'macros.html' as macro %}
 
+{% block styles%}
+{{ super() }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+{% endblock %}
+
 {% block content %}
-
-
         
         
 <div class="row">
                 <div class="card">
                                 <div class="card-body text-center">
-                                <h4><a>{{pitch.title}}</a></h4>
-                                  <h5 class="card-text text-center">{{pitch.description}}.</h5>
+                                <h4><a>{{event.title}}</a></h4>
+                                  <h5 class="card-text text-center" style="font-family: 'Great Vibes', cursive; font-size: 32px">{{event.description}}.</h5>
                                 </div>
                 </div>
 

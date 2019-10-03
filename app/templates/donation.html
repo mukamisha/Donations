@@ -2,30 +2,35 @@
 {% extends 'bootstrap/base.html' %}
 {% include 'navbar.html'%}
 
+{% block styles%}
+{{ super() }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
 
-
+{% endblock %}
 
 {% block content %}
-<div class="container">
+<!-- <div class="container"> -->
 	<div class="row">
 		<div>
-				{{wtf.quick_form(form)}}
-		<ul>
+			{{wtf.quick_form(form)}}
+			<ul>
 				{% for donation in donations %}
-					<div >
-						
-							<div >
-								<p>{{donation.id}}</p>
-							</div>
-							<h4>{{ donation.description }}</h4>
-							<h6> Posted by {{user.username}}.</h6>
-						
+				<div>
+
+					<div>
+						<p>{{donation.id}}</p>
 					</div>
+					<h4 style="font-family: 'Great Vibes', cursive;">{{ donation.description }}</h4>
+					<h6> Posted by {{user.username}}.</h6>
+
+				</div>
 				{% endfor %}
-		</ul>
+			</ul>
 		</div>
 	</div>
-</div>
-	
-	
+<!-- </div> -->
+
+
 {% endblock %}

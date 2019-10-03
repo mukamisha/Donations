@@ -1,6 +1,15 @@
 {% import 'bootstrap/wtf.html' as wtf %}
 {% extends 'bootstrap/base.html' %}
 {% include 'navbar.html'%}
+
+{% block styles%}
+{{ super() }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+
+{% endblock %}
+
 {% block content %}
 <div class="container">
     <div class="row">
@@ -13,7 +22,7 @@
                             <div >
                                 <p>{{event.id}}</p>
                             </div>
-                            <h4>{{ event.description }}</h4>
+                            <h4 style="font-family: 'Great Vibes', cursive;">{{ event.description }}</h4>
                             <h6> Posted by {{user.username}}.</h6>
                         
                     </div>

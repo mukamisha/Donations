@@ -16,6 +16,7 @@ class User(UserMixin,db.Model):
     donation = db.relationship('Donation', backref='user', lazy='dynamic')
     comment = db.relationship('Comment', backref = 'user', lazy = 'dynamic')
     upvotes = db.relationship('Upvote', backref = 'user', lazy = 'dynamic')
+    event = db.relationship('Event', backref = 'user', lazy = 'dynamic')
     bio = db.Column(db.String(255))
     profile_pic_path =  db.Column(db.String(255))
     password_secure =  db.Column(db.String(255))

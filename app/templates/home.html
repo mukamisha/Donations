@@ -3,43 +3,56 @@
 {% block navbar %}
 {% include 'navbar.html'%}
 {% endblock %}
- {% block content %}
-   <div class="container">
-       <div class="jumbotron" style="height:200px;width:1120px;font-family: 'Kaushan Script', cursive;font-size:5px">
-         <p>Posted Events</p>
-       </div>
-     </div>
-     <h3 style="color: black;text-align: center"> here are different event categories you may see</h3>
-     <br>
-     <div style="width:600px;height:100px;margin-left:400px">
-     <ul class="nav justify-content-center" role="tablist">
-       <li class="nav-item">
-         <a class="navbar-brand" data-toggle="tab" href="#health" style="background-color:black">Health</a>
-       </li>
-       <li class="nav-item">
-         <a class="navbar-brand" data-toggle="tab" href="#education" style="background-color:black">Education</a>
-       </li>
-       <li class="nav-item">
-         <a class="navbar-brand" data-toggle="tab" href="#disasters" style="background-color:black">Disasters</a>
-       </li>
-       <li class="nav-item">
-         <a class="navbar-brand" data-toggle="tab" href="#justice" style="background-color:black">Justice</a>
-       </li>
-     </ul>
-     </div>
-     <div class="tab-content">
-       <div id="health" class="container tab-pane fade"><br>
-         {{ macro.display(health) }}
-       </div>
-       <div id="education" class="container tab-pane fade"><br>
-         {{ macro.display(education) }}
-       </div>
-       <div id="disasters" class="container tab-pane fade"><br>
-         {{ macro.display(disasters)}}
-       </div>
-       <div id="justice" class="container tab-pane fade"><br>
-         {{ macro.display(justice) }}
-       </div>
-     </div>
-   </div>
- {% endblock %}
+
+{% block styles%}
+{{ super() }}
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css?family=Great+Vibes&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Playfair+Display&display=swap" rel="stylesheet">
+
+{% endblock %}
+
+{% block content %}
+
+<h2 style="color: black;text-align: center; font-family: 'Great Vibes', cursive; font-size:52px;">Event categories</h3>
+<br>
+<!-- <div class="col-md-2"> -->
+    <ul>
+      <a style=" color:rgb(7, 0, 0); margin-left: 40%; font-family: 'Playfair Display', serif; text-align: center; font-size:32px; margin-right: 5px;" href="{{url_for('main.new_event')}}"><button
+          type="button">Post Event</button> </a>
+    </ul>
+    <br>
+  <!-- </div> -->
+<div style="width:600px;height:100px;margin-left:400px">
+  <ul class="nav justify-content-center" role="tablist">
+    <li class="nav-item">
+      <a class="navbar-brand" data-toggle="tab" href="#health" style="background-color:black">Health</a>
+    </li>
+    <li class="nav-item">
+      <a class="navbar-brand" data-toggle="tab" href="#education" style="background-color:black">Education</a>
+    </li>
+    <li class="nav-item">
+      <a class="navbar-brand" data-toggle="tab" href="#disasters" style="background-color:black">Disasters</a>
+    </li>
+    <li class="nav-item">
+      <a class="navbar-brand" data-toggle="tab" href="#justice" style="background-color:black">Justice</a>
+    </li>
+  </ul>
+</div>
+<div class="tab-content">
+  <div id="health" class="container tab-pane fade"><br>
+    {{ macro.display(health) }}
+  </div>
+  <div id="education" class="container tab-pane fade"><br>
+    {{ macro.display(education) }}
+  </div>
+  <div id="disasters" class="container tab-pane fade"><br>
+    {{ macro.display(disasters)}}
+  </div>
+  <div id="justice" class="container tab-pane fade"><br>
+    {{ macro.display(justice) }}
+  </div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,20 @@
+
+
+#container
+{
+    height:400px;
+    width:400px;
+    border:1px rgb(248, 245, 245) solid;
+}
+
+#inner
+{
+    height:200px;
+    width:200px;
+    background:rgb(243, 240, 240);
+    -moz-border-radius: 100px;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    margin-left:25%;
+    margin-top:25%;
+}

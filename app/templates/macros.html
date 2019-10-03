@@ -12,9 +12,9 @@
 					<footer class="blockquote-footer"> Posted by {{category.user.username}}</footer>
 				</blockquote>
 
-				<a href="{{url_for('main.new_comment',pitch_id = category.id)}}" class="btn btn-info"> Add a comment</a>
-				<a href="{{url_for('main.upvote',pitch_id = category.id)}}" class="btn btn-info"><i></i>Upvote <span>{{category.upvotes.count()}}</span></a>
-
+				<a href="{{url_for('main.new_comment',event_id = category.id)}}" class="btn btn-info"> Add a comment</a>
+				<a href="{{url_for('main.upvote',event_id = category.id)}}" class="btn btn-info"><i></i>Upvote <span>{{category.upvotes.count()}}</span></a>
+				
 			</div>
 		</div>
 
@@ -33,7 +33,7 @@
 	{% if comments %}
 	{% for comment in comments %}
 	<div class="row text-center">
-		<p style="color: black">{{ comment.description }}</p>
+		<p style="color: black; font-family: 'Great Vibes', cursive; font-size:32px;">{{ comment.description }}</p>
 		<p></p> posted by {{comment.user.username}}</p>
 	</div>
 	{% endfor %}
