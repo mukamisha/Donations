@@ -1,4 +1,3 @@
-
 {% include 'navbar.html'%}
 
 {% import 'bootstrap/wtf.html' as wtf %}
@@ -14,38 +13,71 @@
 {% endblock %}
 
 {% block content %}
-        
-        
-<div class="row">
-                <div class="card">
-                                <div class="card-body text-center">
-                                <h4><a>{{event.title}}</a></h4>
-                                  <h5 class="card-text text-center" style="font-family: 'Great Vibes', cursive; font-size: 32px">{{event.description}}.</h5>
-                                </div>
-                </div>
+
+<!-- <div  style="background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6),rgba(0,0,0,0.6)), url(static/photos/kids.png);  background-repeat: no-repeat; background-size: cover; "></div> -->
 
 
-                <div class="container">
-                                <div class="row">
-                                        <div  style="width:520px;height:300px">
-                                                {{wtf.quick_form(form)}}
-                                        </div>
-                                </div>
-                        </div>
-                        
+<div class="container">
 
-        <div class="container">
-                <div class="col-md-12">
-                        <h4 style="color: black; text-align: center;text-decoration:none">Comments for this posts are:</h4>
-                        {{ macro.displayComment(comment) }}
 
-                </div>
-                 
+<div class ="row">
+        <div class="col-md-7" style="margin-top: 100px;" >
+                <!-- ../static/photos/hand.jpg -->
+                <img width="70%" src="{{url_for('static', filename = 'photos/hand.jpg')}}" alt="img">
+
         </div>
-        
+
+        <div class="col-md-5" style="margin-top: 100px;" >
+                        <p style="margin-left:10%;">To enjoy good health, to bring true happiness to one's family, to bring peace to all, one must first discipline and control one's own mind. <br>
+                                If a man can control his mind he can find the way to Enlightenment, and all wisdom and virtue will naturally come to him.<br>
+                                "BUddha"
+
+                                      </p>
+
+                {{wtf.quick_form(form)}}
+        </div>
+
+
+
+</div>
 </div>
 
 
 
-	
+
+
+<div class="container">
+
+        <div class="row">
+                <div class="card">
+
+                        <h3 style="text-align:center;border-bottom:1px solid rgb(7, 7, 7);">Leave us a comment</h3><hr style="width: 50%;">
+                        <h4 class ="text-center">{{event.title}}</h4>
+                        <h5 class="card-text text-center" style="font-family: 'Great Vibes', cursive; font-size: 32px">{{event.description}}.</h5>
+                        <div class="card-body text-center col-md-6" style="box-shadow: 2px 4px 12px 2px rgb(148, 147, 147); margin: 1rem; padding: 0; border-radius: 10px; margin-left: 300px; margin-bottom: 20px; background-image: url('https://i.pinimg.com/originals/50/85/16/5085160094547b9bd560a072ca250953.jpg');">
+
+                                <h4 class="card-text text-center" style="font-family: 'Great Vibes', cursive; font-size:24px;">{{
+                                        macro.displayComment(comment) }}.</h4>
+                                        
+
+                        </div>
+                </div>
+        </div>
+
+        <div class="container">
+                <div class="row">
+
+                </div>
+
+
+
+        </div>
+
+</div>
+<div style="margin-top:300px; background-color:black;text-align:center;color:white;height:100px;font-size:18px;padding-top:40px;">
+                <p> &copy;2019 copyright | kobnaome |All Right Reserved </p>
+            </div>
+            
+
+
 {% endblock %}

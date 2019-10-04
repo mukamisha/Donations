@@ -6,7 +6,7 @@ from .. import db
 from flask import render_template,redirect,url_for, flash,request
 from flask_login import login_user
 from ..models import User
-from .forms import LoginForm,RegistrationForm,DonationForm
+from .forms import LoginForm,RegistrationForm,DonationForm,SubscriptionForm
 from flask_login import login_user,logout_user,login_required
 from ..email import mail_message
 
@@ -43,15 +43,31 @@ def register():
         title = "New Account"
     return render_template('auth/register.html',registration_form = form)
 
-@auth.route('/subscription', methods=["GET", "POST"])
-def subscription():
+@auth.route('/donation', methods=["GET", "POST"])
+def donation():
    subform = DonationForm()
    if subform.validate_on_submit():
-       subscribers = Subscription(name=subform.name.data, email=subform.email.data)
-       db.session.add(subscribers)
+       donors = Donation(name=subform.name.data, email=subform.email.data)
+       db.session.add(donors)
        db.session.commit()
        mail_message("Welcome to Donation...",
-                    "email/welcome_user", subscribers.email, subscribers=subscribers)
+                    "email/welcome_user", donors.email, donors=donors)
        return redirect(url_for('main.index'))
-       title = "New Subscription"
-   return render_template('auth/subscribe.html', subscription_form=subform)
+       
+   return render_template('auth/donation.html', donation_form=subform)
+
+@auth.route('/subscription', methods=["GET", "POST"])
+def subscription():
+    subform = SubscriptionForm()
+    if subform.validate_on_submit():
+        subscribers = Subscription(name=subform.name.data, email=subform.email.data)
+
+        db.session.add(subscribers)
+        db.session.commit()
+
+        mail_message("Welcome to Donation...",
+                     "email/welcome_subscriber", subscribers.email, subscribers=subscribers)
+
+        return redirect(url_for('main.index'))
+        title = "New Subscription"
+    return render_template('auth/subscribe.html', subscription_form=subform)

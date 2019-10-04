@@ -17,20 +17,23 @@
                 {{wtf.quick_form(form)}}
         <ul>
                 {% for event in events %}
+
                     <div >
                         
-                            <div >
+                            <div>
                                 <p>{{event.id}}</p>
                             </div>
                             <h4 style="font-family: 'Great Vibes', cursive;">{{ event.description }}</h4>
                             <h6> Posted by {{user.username}}.</h6>
-                        
+                            <a href="{{url_for('main.new_comment', event_id = events.id)}}" class="btn btn-info">Comment <span>{{events.comments.count()}}</span></a>
                     </div>
                 {% endfor %}
         </ul>
+
         </div>
     </div>
 </div>
+
     
     
 {% endblock %}

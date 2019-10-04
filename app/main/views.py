@@ -26,20 +26,24 @@ def index():
 
 @main.route('/home', methods = ['GET','POST'])
 def home():
-   event = Event.query.filter_by().first()
+   event = Event.query.filter_by().all()
    title = 'EVENT'
-   health = Event.query.filter_by(category="health")
-   education = Event.query.filter_by(category = "education")
-   disasters = Event.query.filter_by(category = "disasters")
-   justice = Event.query.filter_by(category = "justice")
-   return render_template('home.html', title = title, event = event, health=health, education= education, disasters = disasters,justice = justice)
+#    health = Event.query.filter_by(category="health")
+#    education = Event.query.filter_by(category = "education")
+#    disasters = Event.query.filter_by(category = "disasters")
+#    justice = Event.query.filter_by(category = "justice")
+   return render_template('home.html', event= event)
+#    , title = title, event = event, health=health, education= education, disasters = disasters,justice = justice)
+
+
+
 
 
 @main.route('/donation/new/', methods = ['GET','POST'])
 @login_required
 def new_donation():
     form = DonationForm()
-    subscribe = Subscription.query.all()
+    donate = Donation.query.all()
     if form.validate_on_submit():
 
         description = form.description.data
@@ -51,9 +55,9 @@ def new_donation():
         db.session.add(new_donation)
         db.session.commit()
 
-        for email in subscribe:
+        for email in donate:
            mail_message("New Blog Alert!!!!",
-                        "email/blog_alert", email.email, subscribe=subscribe)
+                        "email/blog_alert", email.email, donate=donate)
         return redirect(url_for('.new_donation', donation_id=donation_id))
         all_donations = Donation.query.filter_by(donation_id = donation_id).all()
     return render_template('donation.html',form=form, donation = all_donations)
@@ -73,7 +77,7 @@ def new_comment(event_id):
         db.session.commit()
 
 
-        return redirect(url_for('.home', event_id= event_id))
+        return redirect(url_for('.new_comment', event_id= event_id))
 
     all_comments = Comment.query.filter_by(event_id = event_id).all()
     return render_template('comment.html', form = form, comment = all_comments, event = event )
@@ -86,12 +90,12 @@ def upvote(event_id):
     event_upvotes = Upvote.query.filter_by(event_id= event_id)
     
     if Upvote.query.filter(Upvote.user_id==user.id,Upvote.event_id==event_id).first():
-        return  redirect(url_for('main.home'))
+        return  redirect(url_for('.home'))
 
 
     new_upvote = Upvote(event_id=event_id, user = current_user)
     new_upvote.save_upvotes()
-    return redirect(url_for('main.home'))
+    return redirect(url_for('.home'))
 
 
 @main.route('/user/<uname>')
@@ -138,6 +142,7 @@ def update_pic(uname):
 @login_required
 def new_event():
    form = EventForm()
+   subscribe = Subscription.query.all()
    if form.validate_on_submit():
        description = form.description.data
        title = form.title.data
@@ -147,6 +152,9 @@ def new_event():
        new_event = Event(user_id =current_user._get_current_object().id, title = title,description=description,category=category)
        db.session.add(new_event)
        db.session.commit()
+       for email in subscribe:
+           mail_message("New Blog Alert!!!!",
+                        "email/blog_alert", email.email, subscribe=subscribe)
        return redirect(url_for('main.home'))
    return render_template('event.html',form=form)
 

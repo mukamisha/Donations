@@ -21,6 +21,6 @@ class UpvoteForm(FlaskForm):
 
 class EventForm(FlaskForm):
     title = StringField('Title', validators=[Required()])
-    description = TextAreaField("What would you like to pitch ?",validators=[Required()])
+    description = TextAreaField("Post an Upcoming Event ?",validators=[Required()])
     category = RadioField('Label', choices=[ ('health','health'), (' education',' education'),('disasters','disasters'),('justice','justice')],validators=[Required()])
     submit = SubmitField('Submit')

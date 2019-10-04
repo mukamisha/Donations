@@ -68,6 +68,8 @@ class Event(db.Model):
    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
    description = db.Column(db.String(), index = True)
    title = db.Column(db.String())
+   name = db.Column(db.String(100))
+   email = db.Column(db.String(100), unique=True)
    category = db.Column(db.String(255), nullable=False)
    comments = db.relationship('Comment',backref='event',lazy='dynamic')
    upvotes = db.relationship('Upvote', backref = 'event', lazy = 'dynamic')

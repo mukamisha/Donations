@@ -22,7 +22,19 @@ class RegistrationForm(FlaskForm):
         if User.query.filter_by(username = data_field.data).first():
             raise ValidationError('That username is taken')
 
+class SubscriptionForm(FlaskForm):
+    name = StringField('names', validators=[Required()])
+    email = StringField('Email',validators=[Required()])
+    submit = SubmitField('Submit')
 
+def validate_name(self, data_field):
+    if User.query.filter_by(username=data_field.data).first():
+        raise ValidationError('That username is taken')
+
+def validate_user_email(self, data_field):
+    if User.query.filter_by(email=data_field.data).first():
+        raise ValidationError('There is an account with that email')
+        
 class DonationForm(FlaskForm):
    name = StringField('names', validators=[Required()])
    email = StringField('Email',validators=[Required()])
